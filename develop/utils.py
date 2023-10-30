@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 
-def get_dat(filename):
+def get_data(filename):
     with open(filename, 'r', encoding='UTF-8') as file:
         data: object = json.load(file)
         return data
