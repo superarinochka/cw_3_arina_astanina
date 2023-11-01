@@ -6,6 +6,7 @@ def get_data(filename):
         data: object = json.load(file)
         return data
 
+
 def get_operations_executed(data):
     operations_executed = []
     for operation in data:
@@ -17,10 +18,12 @@ def get_operations_executed(data):
             operations_with_from.append(operation)
     return operations_with_from
 
+
 def get_last_five_operations(operations_with_from, num_of_operations):
     operations_sort = sorted(operations_with_from, key=lambda operation: operation['date'], reverse=True)
     last_five_operations = operations_sort[0:num_of_operations]
     return last_five_operations
+
 
 def get_operations_formatted(last_five_operations):
     operations_formatted_list = []
@@ -34,7 +37,7 @@ def get_operations_formatted(last_five_operations):
             if payer[0] == 'Счет':
                 payment_method_from = f'**{payment_method[-4:]}'
             else:
-                payment_method_from = f'{payment_method[:4]} {payment_method[4:6]}** ****{payment_method[-4:]}'
+                payment_method_from = f'{payment_method[:4]} {payment_method[4:6]}** **** {payment_method[-4:]}'
             payer_info = ' '.join(payer)
         recipient = f"{operation['to'].split()[0]} **{operation['to'][-4:]}"
         operation_amount = f"{operation['operationAmount']['amount']} {operation['operationAmount']['currency']['name']}"
